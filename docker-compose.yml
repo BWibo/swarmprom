@@ -161,7 +161,7 @@ services:
           memory: 64M
 
   prometheus:
-    image: stefanprodan/swarmprom-prometheus:v2.5.0
+    image: bsvr.gis.lrg.tum.de/swarmprom-prometheus:v2.25.2
     networks:
       - net
     command:
