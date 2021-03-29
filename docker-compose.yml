@@ -72,7 +72,7 @@ services:
           memory: 64M
 
   grafana:
-    image: stefanprodan/swarmprom-grafana:5.3.4
+    image: bsvr.gis.lrg.tum.de/swarmprom-grafana:7.5.1
     networks:
       - net
     environment:
@@ -136,7 +136,7 @@ services:
       replicas: 1
 
   node-exporter:
-    image: stefanprodan/swarmprom-node-exporter:v0.16.0
+    image: bsvr.gis.lrg.tum.de/swarmprom-node-exporter:v1.1.2
     networks:
       - net
     environment:
