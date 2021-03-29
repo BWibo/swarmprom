@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.8"
 
 networks:
   net:
@@ -39,16 +39,30 @@ services:
           memory: 64M
 
   cadvisor:
-    image: google/cadvisor
-    networks:
-      - net
-    command: -logtostderr -docker_only
+    image: docker
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /:/rootfs:ro
-      - /var/run:/var/run
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
+        - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: ["/bin/sh","-c"]
+    networks:
+    - net
+    deploy:
+      mode: global
+    environment:
+      - PARENT={{.Task.Name}}
+      - CHILDNAME={{.Service.Name}}_sidecar.{{.Node.ID}}.{{.Task.ID}}
+      - CADVISOR_VERSION=v0.37.5
+    command:
+    - |
+      exec docker run -i --rm --network="container:$${PARENT}" \
+            --volume=/:/rootfs:ro \
+            --volume=/var/run:/var/run:ro  \
+            --volume=/sys:/sys:ro  \
+            --volume=/var/lib/docker/:/var/lib/docker:ro \
+            --volume=/dev/disk/:/dev/disk:ro \
+            --name $${CHILDNAME} \
+            --privileged \
+            --device=/dev/kmsg \
+            gcr.io/cadvisor/cadvisor:$${CADVISOR_VERSION}
     deploy:
       mode: global
       resources:
