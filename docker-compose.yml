@@ -45,8 +45,6 @@ services:
     entrypoint: ["/bin/sh","-c"]
     networks:
     - net
-    deploy:
-      mode: global
     environment:
       - PARENT={{.Task.Name}}
       - CHILDNAME={{.Service.Name}}_sidecar.{{.Node.ID}}.{{.Task.ID}}
