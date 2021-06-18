@@ -1,4 +1,6 @@
-FROM prom/node-exporter:v1.1.2
+
+ARG BASEIMAGE_TAG='v1.1.2'
+FROM prom/node-exporter:${BASEIMAGE_TAG}
 
 ENV NODE_ID=none
 
