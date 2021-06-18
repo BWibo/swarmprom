@@ -167,7 +167,7 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=${PROMETHEUS_RETENTION:-1y}'
     volumes:
-      - /tmp/prometheus:/prometheus
+      - /home/bruno/prometheus:/prometheus
     configs:
       - source: node_rules
         target: /etc/prometheus/swarm_node.rules.yml
