@@ -6,11 +6,7 @@ networks:
     attachable: true
 
 volumes:
-  prometheus:
-    driver: local
-    driver_opts:
-      device: /tmp/prometheus
-      o: bind
+  # prometheus: {}
   grafana: {}
   alertmanager: {}
 
@@ -171,7 +167,7 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=${PROMETHEUS_RETENTION:-1y}'
     volumes:
-      - prometheus:/
+      - /tmp/prometheus:/prometheus
     configs:
       - source: node_rules
         target: /etc/prometheus/swarm_node.rules.yml
