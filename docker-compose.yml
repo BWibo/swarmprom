@@ -163,7 +163,7 @@ services:
           memory: 64M
 
   prometheus:
-    image: bsvr.gis.lrg.tum.de/swarmprom-prometheus:v2.25.2
+    image: bsvr.gis.lrg.tum.de/swarmprom-prometheus:v2.27.1
     networks:
       - net
     command:
