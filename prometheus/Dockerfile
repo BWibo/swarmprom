@@ -1,4 +1,6 @@
-FROM prom/prometheus:v2.25.2
+
+ARG BASEIMAGE_TAG='v2.27.1'
+FROM prom/prometheus:${BASEIMAGE_TAG}
 # https://hub.docker.com/r/prom/prometheus/tags/
 
 ENV WEAVE_TOKEN=none
