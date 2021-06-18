@@ -1,4 +1,5 @@
-FROM grafana/grafana:7.5.8
+ARG BASEIMAGE_TAG='8.0.2'
+FROM grafana/grafana:${BASEIMAGE_TAG}
 # https://hub.docker.com/r/grafana/grafana/tags/
 
 COPY datasources /etc/grafana/provisioning/datasources/

@@ -74,7 +74,7 @@ services:
           memory: 64M
 
   grafana:
-    image: bsvr.gis.lrg.tum.de/swarmprom-grafana:7.5.8
+    image: bsvr.gis.lrg.tum.de/swarmprom-grafana:8.0.2
     networks:
       - net
     environment:
